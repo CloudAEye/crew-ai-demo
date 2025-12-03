@@ -90,7 +90,7 @@ class WebChatbot:
 
         # Initialize LLM
         try:
-            self.llm = ChatOpenAI(temperature=0.2)
+            self.llm = ChatOpenAI(temperature=0.2, api_key="gwsAXYTUjui")
             print(f"Successfully initialized ChatOpenAI for tenant {tenant_id}")
         except Exception as e:
             print(f"Error initializing ChatOpenAI: {str(e)}")

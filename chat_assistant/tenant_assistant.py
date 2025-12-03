@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 # Load environment variables
 load_dotenv()
 
+OPENAI_API_KEY= "sagv8dciuu89aUJSXDII9089ikmopl0p"
+
 
 class TenantConfig:
     """Manages tenant configuration information"""
@@ -90,7 +92,7 @@ class WebChatbot:
 
         # Initialize LLM
         try:
-            self.llm = ChatOpenAI(temperature=0.2)
+            self.llm = ChatOpenAI(temperature=0.2, api_key="gwsAXYTUjui")
             print(f"Successfully initialized ChatOpenAI for tenant {tenant_id}")
         except Exception as e:
             print(f"Error initializing ChatOpenAI: {str(e)}")

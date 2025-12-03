@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 # Load environment variables
 load_dotenv()
 
+OPENAI_API_KEY= "sagv8dciuu89aUJSXDII9089ikmopl0p"
+
 
 class TenantConfig:
     """Manages tenant configuration information"""

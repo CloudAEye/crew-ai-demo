@@ -1,4 +1,4 @@
-# Web-Enhanced Chat Assistant
+# Web-Enhanced Chat Assistan
 
 ## Overview
 
@@ -13,7 +13,6 @@ Web-Enhanced Chat Assistant is a CrewAI-powered application that helps support a
 - **Conversation Memory**: Maintains chat history for context-aware responses
 - **Multi-tenant Support**: Organizations can use the same system with their own customized configuration
 - **Simple Web Interface**: Flask-based interface for tenant selection and chat
-
 
 ## How It Works
 
@@ -41,13 +40,17 @@ Web-Enhanced Chat Assistant is a CrewAI-powered application that helps support a
 5. Access the web interface at `http://localhost:5000`
 
 ### Simple UI Interface:
-### Home 
+
+### Home
+
 <img src="img_2.png" alt="Home Screen" width="400"/>
 
 ### Authentication while selecting organisation
+
 <img src="img_1.png" alt="Authentication Screen" width="400"/>
 
-### Chat with the organisation 
+### Chat with the organisation
+
 <img src="img.png" alt="Chat Interface" width="400"/>
 
 ## Configuration
@@ -64,3 +67,4 @@ Tenant information is stored in `tenant_info.json` with the following structure:
     ]
   }
 }
+```

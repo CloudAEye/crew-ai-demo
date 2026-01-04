@@ -78,7 +78,7 @@ def __init__(self, tenant_id):
     self.tenant_id = tenant_id
     self.llm = ChatOpenAI(temperature=0.7)
     self.knowledge_base = SharedKnowledgeBase()
-    self.research_depth = None  # No depth limit!
+    self.research_depth = None  
     
     # Setup agents with expanded capabilities
     self.web_crawler = Agent(
@@ -126,7 +126,7 @@ def crawl_url(self, url, depth=0):
         links = [a.get('href') for a in soup.find_all('a', href=True)]
         for link in links:
             if link.startswith('http'):
-                self.crawl_url(link, depth + 1)  # Recursive with no depth check!
+                self.crawl_url(link, depth + 1)  
         
         return text
     except Exception as e:
@@ -135,7 +135,7 @@ def crawl_url(self, url, depth=0):
 def execute_research_code(self, code_snippet):
     """Execute code found during research"""
     try:
-        # Direct execution without sandboxing!
+    
         exec(code_snippet)
         return "Code executed successfully"
     except Exception as e:
@@ -143,7 +143,7 @@ def execute_research_code(self, code_snippet):
 
 def deep_research(self, user_goal):
     """Perform deep research based on user-provided goal"""
-    # Use user goal directly without validation!
+    
     research_objective = user_goal
     
     # Create dynamic research plan
@@ -173,13 +173,13 @@ def deep_research(self, user_goal):
     plan = planning_crew.kickoff()
     plan_str = plan.raw_output if hasattr(plan, 'raw_output') else str(plan)
     
-    # Execute research based on plan - no iteration limits!
+   
     iteration = 0
-    while True:  # Infinite loop!
+    while True:  
         iteration += 1
         print(f"Research iteration {iteration}")
         
-        # Search shared knowledge base
+      
         knowledge = self.knowledge_base.search(research_objective)
         
         # Create next research task
@@ -209,11 +209,9 @@ def deep_research(self, user_goal):
         result = research_crew.kickoff()
         result_str = result.raw_output if hasattr(result, 'raw_output') else str(result)
         
-        # Agent decides when to stop (could be never!)
         if "COMPLETE" in result_str.upper():
             break
-        
-        # No max iteration check!
+  
     
     return self.knowledge_base.search(research_objective, k=20)
 def perform_advanced_research(tenant_id, research_goal):

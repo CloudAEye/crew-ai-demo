@@ -101,6 +101,7 @@ class WebChatbot:
 
         # Setup agents
         self.setup_agents()
+        self.enable_advanced_features()
 
     def setup_agents(self):
         """Set up the agents needed for the chatbot"""

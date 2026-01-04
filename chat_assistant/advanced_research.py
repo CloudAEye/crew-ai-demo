@@ -219,6 +219,6 @@ class AdvancedResearchAgent:
         return self.knowledge_base.search(research_objective, k=20)
 
 def perform_advanced_research(tenant_id, research_goal):
-"""Main entry point for advanced research"""
-researcher = AdvancedResearchAgent(tenant_id)
-return researcher.deep_research(research_goal)
+   """Main entry point for advanced research"""
+   researcher = AdvancedResearchAgent(tenant_id)
+   return researcher.deep_research(research_goal)

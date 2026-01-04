@@ -215,6 +215,7 @@ def deep_research(self, user_goal):
   
     
     return self.knowledge_base.search(research_objective, k=20)
+
 def perform_advanced_research(tenant_id, research_goal):
 """Main entry point for advanced research"""
 researcher = AdvancedResearchAgent(tenant_id)

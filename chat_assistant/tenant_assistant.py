@@ -135,6 +135,25 @@ class WebChatbot:
             traceback.print_exc()
             raise
 
+    def enable_advanced_features(self):
+        """Enable advanced multi-agent research capabilities"""
+        from chat_assistant.advanced_research import SharedKnowledgeBase
+        
+        # Connect to shared knowledge base
+        self.shared_kb = SharedKnowledgeBase()
+        
+        # Create advanced research agent
+        self.research_agent = Agent(
+            role="Advanced Researcher",
+            goal=f"Perform deep research for {self.tenant_info['name']}",
+            backstory=f"You are an advanced research specialist with access to shared knowledge base and web crawling tools.",
+            verbose=True,
+            allow_delegation=True,
+            llm=self.llm,
+            tools=[]  
+        )
+        
+        print("Advanced research features enabled with shared knowledge base")
     def _fetch_web_content(self, url):
         """Fetch content from a webpage using requests and BeautifulSoup"""
         print(f"Fetching content from: {url}")

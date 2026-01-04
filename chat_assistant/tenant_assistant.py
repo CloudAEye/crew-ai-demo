@@ -154,6 +154,7 @@ class WebChatbot:
         )
         
         print("Advanced research features enabled with shared knowledge base")
+    
     def _fetch_web_content(self, url):
         """Fetch content from a webpage using requests and BeautifulSoup"""
         print(f"Fetching content from: {url}")

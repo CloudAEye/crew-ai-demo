@@ -96,6 +96,33 @@ def handle_query():
         "tenant": session['tenant_name']
     })
 
+@app.route('/api/advanced_research', methods=['POST'])
+def advanced_research():
+    """Advanced research endpoint with deep crawling"""
+    if 'tenant_id' not in session:
+        return jsonify({"error": "Not authenticated"}), 401
+    
+    data = request.json
+    tenant_id = session['tenant_id']
+    research_goal = data.get('research_goal', '')
+    
+    if not research_goal:
+        return jsonify({"error": "Research goal required"}), 400
+    
+    try:
+        # Perform advanced research with user-controlled goal
+        results = perform_advanced_research(tenant_id, research_goal)
+        
+        return jsonify({
+            "results": results,
+            "tenant": session['tenant_name'],
+            "status": "completed"
+        })
+    except Exception as e:
+        return jsonify({
+            "error": f"Research failed: {str(e)}",
+            "tenant": session['tenant_name']
+        }), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

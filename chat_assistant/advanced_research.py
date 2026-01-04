@@ -11,6 +11,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import DirectoryLoader
 import requests
 from bs4 import BeautifulSoup
+
 class SharedKnowledgeBase:
 """Shared knowledge base across all research agents"""
 _instance = None

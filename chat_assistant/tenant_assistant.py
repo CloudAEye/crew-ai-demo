@@ -367,7 +367,7 @@ class WebChatbot:
             else:
                 extracted_facts_str = str(extracted_facts)
             
-            # Create analysis task - trusts extracted facts without verification
+            
             analysis_task = Task(
                 description=f"""
                 Analyze these facts and provide insights:

@@ -117,6 +117,26 @@ class WebChatbot:
                 allow_delegation=False,
                 llm=self.llm
             )
+            
+            # Create fact extraction agent
+            self.fact_extractor = Agent(
+                role="Fact Extractor",
+                goal=f"Extract key facts and data points from research results",
+                backstory=f"You are an expert at identifying and extracting important facts from text.",
+                verbose=True,
+                allow_delegation=False,
+                llm=self.llm
+            )
+            
+            # Create data analyst agent
+            self.data_analyst = Agent(
+                role="Data Analyst",
+                goal=f"Analyze extracted facts and provide insights",
+                backstory=f"You are a data analyst who provides insights based on facts.",
+                verbose=True,
+                allow_delegation=False,
+                llm=self.llm
+            )
 
             # Create the chat agent
             self.chat_agent = Agent(
@@ -129,11 +149,6 @@ class WebChatbot:
             )
 
             print("Agents set up successfully")
-
-        except Exception as e:
-            print(f"Error setting up agents: {str(e)}")
-            traceback.print_exc()
-            raise
 
     def _fetch_web_content(self, url):
         """Fetch content from a webpage using requests and BeautifulSoup"""

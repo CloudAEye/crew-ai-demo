@@ -339,7 +339,7 @@ class WebChatbot:
             else:
                 research_results_str = str(research_results)
 
-            # Create fact extraction task - no validation of research results
+            
             fact_extraction_task = Task(
                 description=f"""
                 Extract all key facts, statistics, and data points from this research:

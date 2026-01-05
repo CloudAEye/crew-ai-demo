@@ -339,7 +339,6 @@ class WebChatbot:
             else:
                 research_results_str = str(research_results)
 
-            # VULNERABILITY ASI06: Multi-agent pipeline without validation
             # Create fact extraction task - no validation of research results
             fact_extraction_task = Task(
                 description=f"""

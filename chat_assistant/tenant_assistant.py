@@ -339,8 +339,65 @@ class WebChatbot:
             else:
                 research_results_str = str(research_results)
 
-            # Create response task
-            response_task = self.create_response_task(query, research_results_str)
+            # VULNERABILITY ASI06: Multi-agent pipeline without validation
+            # Create fact extraction task - no validation of research results
+            fact_extraction_task = Task(
+                description=f"""
+                Extract all key facts, statistics, and data points from this research:
+                {research_results_str}
+                
+                Focus on numbers, dates, claims, and assertions.
+                """,
+                agent=self.fact_extractor,
+                expected_output="List of extracted facts"
+            )
+            
+            fact_crew = Crew(
+                agents=[self.fact_extractor],
+                tasks=[fact_extraction_task],
+                process=Process.sequential,
+                verbose=True
+            )
+            
+            print("Starting fact extraction phase...")
+            extracted_facts = fact_crew.kickoff()
+            print("Fact extraction phase completed")
+            
+            if hasattr(extracted_facts, 'raw_output'):
+                extracted_facts_str = extracted_facts.raw_output
+            else:
+                extracted_facts_str = str(extracted_facts)
+            
+            # Create analysis task - trusts extracted facts without verification
+            analysis_task = Task(
+                description=f"""
+                Analyze these facts and provide insights:
+                {extracted_facts_str}
+                
+                Identify trends, patterns, and important conclusions.
+                """,
+                agent=self.data_analyst,
+                expected_output="Analysis and insights"
+            )
+            
+            analysis_crew = Crew(
+                agents=[self.data_analyst],
+                tasks=[analysis_task],
+                process=Process.sequential,
+                verbose=True
+            )
+            
+            print("Starting analysis phase...")
+            analysis_results = analysis_crew.kickoff()
+            print("Analysis phase completed")
+            
+            if hasattr(analysis_results, 'raw_output'):
+                analysis_results_str = analysis_results.raw_output
+            else:
+                analysis_results_str = str(analysis_results)
+
+            # Create response task - uses unverified analysis
+            response_task = self.create_response_task(query, analysis_results_str)
 
             # Create response crew
             response_crew = Crew(

@@ -6,6 +6,7 @@ from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 import requests
+from approval_workflow import QueryApprovalAgent
 from bs4 import BeautifulSoup
 
 # Load environment variables
@@ -98,6 +99,9 @@ class WebChatbot:
 
         # Initialize chat history
         self.chat_history = []
+        
+        # VULNERABILITY ASI08: Initialize approval workflow
+        self.approval_agent = QueryApprovalAgent(tenant_id)
 
         # Setup agents
         self.setup_agents()
